@@ -61,9 +61,7 @@ public class Board {
         if (checkX()) {
             return true;
         }
-
-
-        if (checkO()) {
+        else if (checkO()) {
             return true;
         }
 
