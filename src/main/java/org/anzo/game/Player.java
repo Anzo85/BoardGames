@@ -1,26 +1,21 @@
 package org.anzo.game;
 
-public class Player {
+import java.io.BufferedReader;
+import java.io.IOException;
 
-    private String name;
-    private int age;
-    private char type;
+public interface Player {
 
-    public Player(String name, int age, char type) {
-        this.name = name;
-        this.age = age;
-        this.type = type;
-    }
 
-    public char getType() {
-        return type;
-    }
+    int moveFromPlayer() throws IOException ;
 
-    public String getName() {
-        return name;
-    }
 
-    public int getAge() {
-        return age;
-    }
+
+
+    public char getType();
+
+    public String getName();
+
+    public int getAge();
+
+   // int moveFromPlayer(BufferedReader set) throws IOException;
 }

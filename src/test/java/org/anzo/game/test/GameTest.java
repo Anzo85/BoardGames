@@ -3,6 +3,7 @@ package org.anzo.game.test;
 
 import org.anzo.game.Board;
 import org.anzo.game.Game;
+import org.anzo.game.Human;
 import org.anzo.game.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +21,8 @@ public class GameTest {
     public void setUp() {
 
 
-        Player p1 = new Player("xxx", 14, 'X');
-        Player p2 = new Player("ooo", 15, 'O');
+        Player p1 = new Human("xxx", 14, 'X');
+        Player p2 = new Human("ooo", 15, 'O');
         bord = new Board(p1, p2);
 
     }

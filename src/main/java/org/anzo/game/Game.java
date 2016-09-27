@@ -14,32 +14,19 @@ public class Game {
 
     public static void main(String[] args) throws IOException {
 
-        BufferedReader set = new BufferedReader(new InputStreamReader(System.in));
-
-
-        Player playerFirst = new Player("Bob", 25, 'X');
-        Player playerSecond = new Player("Mike", 35, 'O');
+        Player playerFirst = new Ai("Nikita", 20, 'X');
+        Player playerSecond = new Human("Andrey", 31, 'O');
 
         Board board = new Board(playerFirst, playerSecond);
 
-        while (!board.gameFinished()) {
-            System.out.println("Player " + board.currentPlayer.getName() + " move");
-            int move = getMoveFromConsole(set);
-            int move2 = getMoveFromConsole(set);
-            board.makeMove(move, move2);
-            board.printBoard();
-        }
+        GameMove GameSet = new GameMove(board);
 
-        Player player = board.getWinner();
-        System.out.println("Congratulation !!! The winner is: " + player.getName() + " " + player.getAge());
+        GameSet.gameMoveProcess();
+
+        Winner win = new Winner(board);
+        win.whoWinner();
 
     }
 
-    private static int getMoveFromConsole(BufferedReader set) throws IOException {
 
-        System.out.print("Enter move: ");
-        int n = Integer.parseInt(set.readLine());
-
-        return n;
-    }
 }

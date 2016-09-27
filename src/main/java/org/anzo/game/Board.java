@@ -3,7 +3,7 @@ package org.anzo.game;
 public class Board {
 
     public static final int BOARD_SIZE = 3;
-    private char[][] board;
+    public char[][] board;
 
     Player playerFirst;
     Player playerSecond;
@@ -21,6 +21,16 @@ public class Board {
         fillBoard();
     }
 
+
+
+    private void changePlayer() {
+        if (currentPlayer == playerFirst) {
+            currentPlayer = playerSecond;
+        } else {
+            currentPlayer = playerFirst;
+        }
+    }
+
     public boolean makeMove(int move, int move2) {
 
 
@@ -31,16 +41,9 @@ public class Board {
             board[i][j] = currentPlayer.getType();
 
             changePlayer();
+            return true;
         }
-        return true;
-    }
-
-    private void changePlayer() {
-        if (currentPlayer == playerFirst) {
-            currentPlayer = playerSecond;
-        } else {
-            currentPlayer = playerFirst;
-        }
+        return false;
     }
 
     public boolean validateMove(int i, int j) {
@@ -54,7 +57,22 @@ public class Board {
 
 
     public boolean gameFinished() {
-        // check X
+
+        if (checkX()) {
+            return true;
+        }
+
+
+        if (checkO()) {
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public boolean checkX() {
+
         if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
             return true;
         } else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') {
@@ -69,10 +87,13 @@ public class Board {
             return true;
         } else if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
             return true;
-        } else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][20] == 'X') {
+        } else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
             return true;
         }
-        // check Y
+        return false;
+    }
+
+    public boolean checkO() {
         if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') {
             return true;
         } else if (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') {
@@ -87,11 +108,9 @@ public class Board {
             return true;
         } else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
             return true;
-        } else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][20] == 'O') {
+        } else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
             return true;
         }
-
-
         return false;
     }
 
