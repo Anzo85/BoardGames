@@ -11,7 +11,7 @@ public class Ai implements Player{
     private int age;
     private char type;
 
-    public Ai(String name, int age, char type) {
+    private Ai(String name, int age, char type) {
         this.name = name;
         this.age = age;
         this.type = type;
@@ -29,6 +29,9 @@ public class Ai implements Player{
         return age;
     }
 
+    public static Ai newInstance(String name, int age, char type){
+        return new Ai(name,age,type);
+    }
 
     public int moveFromPlayer(){
         Random run = new Random();

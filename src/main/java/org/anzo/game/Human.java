@@ -13,7 +13,7 @@ public class Human implements Player {
     private int age;
     private char type;
 
-    public Human(String name, int age, char type) {
+    private Human(String name, int age, char type) {
         this.name = name;
         this.age = age;
         this.type = type;
@@ -31,6 +31,9 @@ public class Human implements Player {
         return age;
     }
 
+    public static Human newInstance(String name, int age, char type) {
+        return new Human(name, age, type);
+    }
 
     public int moveFromPlayer() throws IOException {
 
@@ -42,8 +45,6 @@ public class Human implements Player {
 
         return n;
     }
-
-
 
 
 }

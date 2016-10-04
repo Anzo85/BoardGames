@@ -1,51 +1,21 @@
 package org.anzo.game;
 
-public class Board {
+public class Board extends BasicBoard {
+
 
     public static final int BOARD_SIZE = 3;
-    public char[][] board;
-
-    Player playerFirst;
-    Player playerSecond;
-
-    public Player currentPlayer;
-
 
     public Board(Player playerFirst, Player playerSecond) {
         this.playerFirst = playerFirst;
         this.playerSecond = playerSecond;
-
+//
         this.currentPlayer = playerFirst;
-
+//
         board = new char[BOARD_SIZE][BOARD_SIZE];
         fillBoard();
     }
 
-
-
-    private void changePlayer() {
-        if (currentPlayer == playerFirst) {
-            currentPlayer = playerSecond;
-        } else {
-            currentPlayer = playerFirst;
-        }
-    }
-
-    public boolean makeMove(int move, int move2) {
-
-
-        int i = move;
-        int j = move2;
-
-        if (validateMove(i, j)) {
-            board[i][j] = currentPlayer.getType();
-
-            changePlayer();
-            return true;
-        }
-        return false;
-    }
-
+    @Override
     public boolean validateMove(int i, int j) {
 
         if (board[i][j] == 'X' || board[i][j] == 'O') {
@@ -55,13 +25,12 @@ public class Board {
         return true;
     }
 
-
+    @Override
     public boolean gameFinished() {
 
         if (checkX()) {
             return true;
-        }
-        else if (checkO()) {
+        } else if (checkO()) {
             return true;
         }
 
@@ -112,6 +81,7 @@ public class Board {
         return false;
     }
 
+    @Override
     public void fillBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -120,6 +90,7 @@ public class Board {
         }
     }
 
+    @Override
     public void printBoard() {
         //todo add symbols to show board
         for (int i = 0; i < 3; i++) {
@@ -130,10 +101,5 @@ public class Board {
         }
     }
 
-    public Player getWinner() {
 
-        changePlayer();
-
-        return currentPlayer;
-    }
 }
